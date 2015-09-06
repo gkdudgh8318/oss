@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>kr.co.channelsoft.oss</groupId>
+    <artifactId>aopdeencryptor</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>aopdeencryptor</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.maven.artifact.version>3.2.9.RELEASE</spring.maven.artifact.version>
+        <org.apache.logging.log4j.version>2.0.2</org.apache.logging.log4j.version>
+        <org.slf4j.version>1.7.7</org.slf4j.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.maven.artifact.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${org.apache.logging.log4j.version}</version>
+<!--             <scope>runtime</scope> -->
+        </dependency>
+
+<!--    Log4j 1.x API Bridge -->
+<!--    If existing components use Log4j 1.x and you want to have this logging routed to Log4j 2, -->
+<!--    then remove any log4j 1.x dependencies and add the following. -->
+<!--         <dependency> -->
+<!--             <groupId>org.apache.logging.log4j</groupId> -->
+<!--             <artifactId>log4j-1.2-api</artifactId> -->
+<!--             <version>${org.apache.logging.log4j.version}</version> -->
+<!--         </dependency> -->
+
+<!--    SLF4J Bridge -->
+<!--    If existing components use SLF4J and you want to have this logging routed to Log4j 2, -->
+<!--    then add the following but do not remove any SLF4J dependencies. -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${org.apache.logging.log4j.version}</version>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
