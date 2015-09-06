@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p (%F:%L) - %m%n" />
+        </Console>
+        <RollingFile name="FILEOUT" fileName="${sys:catalina.home}/logs/${web:servletContextName}.log" filePattern="${sys:catalina.home}/logs/backup/$${date:yyyy}/$${date:yyyy-MM}/$${date:yyyy-MM-dd}/${web:servletContextName}-%d{yyyy-MM-dd-HH}-%i.log.gz">
+            <PatternLayout pattern="%d %-5p (%F:%L) - %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="5 MB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    
+    <Loggers>
+        <Logger name="org.springframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="egovframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="org.mybatis" level="DEBUG" additivity="false">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="jdbc.sqltiming" level="DEBUG">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="java.sql" level="DEBUG">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="org.apache.ibatis" level="DEBUG">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="kr.co.channelsoft" level="DEBUG" additivity="false">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="org.aspectj" level="DEBUG">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Logger name="org.aopalliance" level="DEBUG">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Logger>
+        <Root level="DEBUG">
+            <AppenderRef ref="STDOUT" />
+<!--             <AppenderRef ref="FILEOUT" /> -->
+        </Root>
+    </Loggers>
+    
+</Configuration>
