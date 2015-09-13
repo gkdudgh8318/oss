@@ -25,12 +25,12 @@ public class UserServiceImpl extends ServiceCommon implements UserService {
     public Map<String, Object> getUserList(final Map<String, String> dto) throws Exception {
         
         return getSuccessResultMap(new HashMap<String, Object>() {{
-                
+            
             put("rows", mapper.list(dto));
-                
+            
         }});
     }
-   
+    
     /*
      * (non-Javadoc)
      * @see kr.co.channelsoft.oss.deencryptexample.admin.user.service.UserService#saveUser(java.util.Map)
