@@ -2,7 +2,7 @@
 .ui-jqgrid {position: relative;}
 .ui-jqgrid .ui-jqgrid-view {position: relative;left:0; top: 0; padding: 0; font-size:11px;}
 /* caption*/
-.ui-jqgrid .ui-jqgrid-titlebar {padding: .3em .2em .2em .3em; position: relative; font-size: 12px; border-left: 0 none;border-right: 0 none; border-top: 0 none;}
+.ui-jqgrid .ui-jqgrid-titlebar {padding: .5em .5em .5em .5em; position: relative; font-size: 12px; border-left: 0 none;border-right: 0 none; border-top: 0 none;}
 .ui-jqgrid .ui-jqgrid-caption {text-align: left;}
 .ui-jqgrid .ui-jqgrid-title { margin: .1em 0 .2em; }
 .ui-jqgrid .ui-jqgrid-titlebar-close { position: absolute;top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height:18px; cursor:pointer;}
@@ -181,15 +181,15 @@ a.g-menu-item, a.soptclass, a.clearsearchclass { cursor: pointer; }
 /* header*/
 .ui-jqgrid .ui-jqgrid-hdiv {position: relative; margin: 0;padding: 0; overflow-x: hidden; border-bottom:1px solid #dadcdd; border-left: 0 none !important; border-top :1px solid #dadcdd !important; border-right : 0 none !important;}
 .ui-jqgrid .ui-jqgrid-htable {border-collapse:collapse;}
-.ui-jqgrid .ui-jqgrid-htable th {height:26px; font-size:1em; background:#f6f6f7; color:#282828; border-bottom:0px solid #dadcdd; border-right:1px solid #dadcdd;}
-.ui-jqgrid .ui-jqgrid-htable th div {overflow: hidden; position:relative; padding:0; height:22px;}
+.ui-jqgrid .ui-jqgrid-htable th {height:26px; font-size:1em; color:#282828}
+.ui-jqgrid .ui-jqgrid-htable th div {overflow: hidden; position:relative; padding:0; width:auto; height:22px;}
 .ui-th-column-header {border-bottom:1px solid #dadcdd !important;}
 .ui-jqgrid .ui-icon-asc {margin-top:-2px;height:12px;margin-left:1px;}
 .ui-jqgrid .ui-icon-desc {margin-top:3px;height:12px;}
 /* body */
-.ui-jqgrid tr.ui-row-ltr td, .ui-jqgrid tr.ui-row-rtl td {border-bottom:0px solid #e1e1e1; padding:2px 8px; border-color:#e1e1e1;color:#333;}
-.ui-jqgrid-btable .ui-widget-content.ui-state-highlight {background-color:#d6edfe}
-.ui-jqgrid tr.ui-state-highlight.ui-row-ltr td {border-right-color:#b7daf5; border-bottom-color:#b7daf5;}
+.ui-jqgrid tr.ui-row-ltr td, .ui-jqgrid tr.ui-row-rtl td {border-bottom:0px solid #e1e1e1; padding:2px 8px; color:#333;}
+/* .ui-jqgrid-btable .ui-widget-content.ui-state-highlight {background-color:#d6edfe} */
+/* .ui-jqgrid tr.ui-state-highlight.ui-row-ltr td {border-right-color:#b7daf5; border-bottom-color:#b7daf5;} */
 /* target simulation : idct name grid */
 .ui-idctname-header {width: 270px; height: 72px; border-top: 1px solid #dadcdd; border-right: 1px solid #dadcdd; border-bottom: 1px solid #dadcdd; background-color: #f6f6f7;}
 .ui-idctname-cell {height: 22px; border-right: 1px solid #dadcdd; padding: 2px 8px 2px 8px;}

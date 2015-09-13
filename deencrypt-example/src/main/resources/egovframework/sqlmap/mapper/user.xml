@@ -17,8 +17,8 @@
 	        ,ADDR
 	    FROM TUSER
 	    WHERE 1=1
-	    <if test="CELL_NO != null and CELL_NO != ''">
-	    AND CELL_NO LIKE '%' || #{CELL_NO} || '%'
+	    <if test="S_CELL_NO neq null and S_CELL_NO neq ''">
+	    AND CELL_NO LIKE '%' || #{S_CELL_NO} || '%'
 	    </if>
 	</select>
 	
