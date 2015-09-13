@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component("encryptionTargetHolder")
 public class EncryptionTargetHolder {
     
-    private Map<String, List<String>> targetHolder;
+    private final Map<String, List<String>> targetHolder;
     
     public EncryptionTargetHolder() {
     

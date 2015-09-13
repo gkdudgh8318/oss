@@ -3,6 +3,7 @@ package kr.co.channelsoft.oss.aopdeencryptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import kr.co.channelsoft.oss.aopdeencryptor.annotation.Encrypt;
@@ -87,28 +88,23 @@ public class DeencryptionAdvice {
                 }
             }
             
-            Object result = pjp.proceed();// proceed는 전체를 진행시킨다.
-//            List<Map<String, Object>> list = null; // 복호화 list
-//            Map<String, Object> map = null; // 복호화 map 단건
-//            
-//            // 복호화
-//            if (result instanceof List) {
-//                
-//                list = (List<Map<String, Object>>) result;
-//                for (Map<String, Object> data : list) { // list를 하나씩 map에 담는다.
-//                    decrypt(businessName, data);
-//                }
-//                return list;
-//                
-//            } else if (result instanceof Map) {
-//                
-//                map = (Map<String, Object>) result;
-//                decrypt(businessName, map);
-//                return map;
-//                
-//            }
+            Object result = pjp.proceed();
+            
+            // 복호화
+            if (result instanceof List) {
+                for (Map<String, Object> data : (List<Map<String, Object>>) result) { // 복호화 대상 list
+                    decrypt(businessName, data);
+                }
+                
+            } else if (result instanceof Map) {
+                for (Map<String, Object> data : (List<Map<String, Object>>) ((Map<String, Object>) result).get("rows")) { // 복호화 대상 list
+                    decrypt(businessName, data);
+                }
+                
+            }
             
             return result;
+            
         } catch (Throwable e) {
             throw e;
             

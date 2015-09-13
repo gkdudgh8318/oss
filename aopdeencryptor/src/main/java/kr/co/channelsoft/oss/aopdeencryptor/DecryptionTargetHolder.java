@@ -11,19 +11,19 @@ import org.springframework.stereotype.Component;
 @Component("decryptionTargetHolder")
 public class DecryptionTargetHolder {
     
-    private Map<String, List<String>> targetHolder;
+    private final Map<String, List<String>> targetHolder;
     
     public DecryptionTargetHolder() {
     
-        // 복호화 대상 칼럼 선언 & alias 이름 선언
+        // 복호화 대상 정의
         targetHolder = new HashMap<String, List<String>>();
         targetHolder.put("User", Arrays.asList("PASS_WD", "REGI_NO", "CARD_NO", "ACCT_NO", "CELL_NO", "TELE_NO"));
         targetHolder.put("UserList", Arrays.asList("PASS_WD", "REGI_NO", "CARD_NO", "ACCT_NO", "CELL_NO", "TELE_NO"));
-        
-        /*targetHolder.put("User", new ArrayList<String>(CollectionUtils.arrayToList(new String[] {"PASS_WD", "REGI_NO", "CARD_NO", "ACCT_NO", "CELL_NO", "TELE_NO"})));
-    	targetHolder.put("UserList", new ArrayList<String>(CollectionUtils.arrayToList(new String[] {"PASS_WD", "REGI_NO", "CARD_NO", "ACCT_NO", "CELL_NO", "TELE_NO"})));// 카드번호
-        tagerMap.put("ASD14", new ArrayList<String>(CollectionUtils.arrayToList(new String[] {"MobileTel", "BirthDate"})));// 전화번호,생일
-        tagerMap.put("ATA01", new ArrayList<String>(CollectionUtils.arrayToList(new String[] {"ValItem1", "ValItem7"})));*/
+/*
+        tagerMap.put("key1", Arrays.asList("item11", "item12")); // 카드번호
+        tagerMap.put("key2", Arrays.asList("item21", "item22")); // 전화번호, 생일
+        tagerMap.put("key3", Arrays.asList("item31", "item32"));
+*/
     }
     
     public List<String> getTargetList(String key) {
