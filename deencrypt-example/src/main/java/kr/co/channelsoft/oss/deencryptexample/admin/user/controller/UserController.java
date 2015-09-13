@@ -25,7 +25,7 @@ public class UserController {
     
         return "admin/user";
     }
-
+    
     @RequestMapping(value ="/list", produces="text/plain; charset=UTF-8")
     @ResponseBody
     public String list(@RequestParam Map<String, String> params) throws Exception {

@@ -106,32 +106,7 @@ function init() {
 			gridInputData(row);
 	    	return true;
 	    	
-		}, onSelectRow: function(id, status, e) {
-/*              if (id && id !== lastSelected) {
-                grid.jqGrid('saveRow', lastSelected);
-                grid.jqGrid('editRow', id, {
-                     keys: true // true : Enter - 수정 완료, Esc - 수정 취소, false : function 호출 버튼으로만 완료, 취소 가능
-                    ,url: '/admin/user/save'
-                    ,mtype : "POST"
-                    ,successfunc: function(response) {
-                         
-                         logJSON(response);
-                         
-                         if (response && response.responseJSON && response.responseJSON.userdata) {
-                             if (response.responseJSON.userdata.resultCode === '<spring:message code="common.success.code" />') {
-                                 response.responseJSON.userdata.resultCode = '<spring:message code="common.complete.code" />';
-                                 
-                                 grid.jqGrid('saveRow', id);
-                                 
-                                 alert(response.responseJSON.userdata.resultMsg);
-                             }
-                         }
-                     }
-                });
-                lastSelected = id;
-            } */
-        }
-       ,loadComplete: function(response) {
+		},loadComplete: function(response) {
 
              logJSON(response);
             
@@ -161,31 +136,6 @@ $(document).ready(function() {
     $('#addRow').click(function() {
     	grid.jqGrid('addRow', {
             rowID: 'MAIL'+ ++rowIdIndex
-            
-            /* addRowParams: {
-                keys: true, // true : Enter - 수정 완료, Esc - 수정 취소, false : function 호출 버튼으로만 완료, 취소 가능
-                url: '/admin/user/save',
-                mtype : "POST",
-                successfunc: function(response) {
-                    
-                    logJSON(response);
-        			$("#MODE").val("update");
-                    var result = false;
-                    if (response && response.responseJSON && response.responseJSON.userdata) {
-                        if (response.responseJSON.userdata.resultCode === '<spring:message code="common.success.code" />') {
-                            response.responseJSON.userdata.resultCode = '<spring:message code="common.complete.code" />';
-                            
-                            grid.jqGrid('saveRow', 'MAIL'+ rowIdIndex);
-                            
-                            alert(response.responseJSON.userdata.resultMsg);
-                            
-                            result = true;
-                        }
-                    }
-                    
-                    return result;
-                }
-            } */
         });
     	document.frm.reset();
     	$('#MAIL').focus();
@@ -245,6 +195,17 @@ $(document).ready(function() {
 		
 		$("MODE").val("M");
 	});
+	
+	/* 조회 */
+ 	$('#select').click(function() {
+		alert("aa");
+		$("#userGrid").setGridParam({
+	         url: "/admin/user/list"
+			,postData : $("#frm").serialize()
+			,mtype:"POST"
+		}).trigger("reloadGrid");
+		
+	});	 
 });
 
 /* 데이터세팅 */
@@ -279,6 +240,32 @@ function gridInputData(row) {
 		        </div>		        
 		    </div>
 	    </div>
+        <!-- 조회조건 -->
+        <div id="textarea_box">
+        	<div>
+	        	 <table class="outline">
+	        	    <caption>
+	       	        </caption>
+	        	    <colgroup>
+	        	      <col width="80"/>
+	        	      <col width="80" />
+	        	      <col width="80" />
+	        	      <col width="80" />
+	       	        </colgroup>
+		        	    <thead>
+			        	     <tr>
+			        	        <th width="180" align="center" bgcolor="#f1d5c4" class="type_a" scope="col">&nbsp;휴대전화</th>
+			        	        <th width="1500" align="left" bgcolor="#f9ede6" scope="col">
+			        	        	<input type="text" name="CELL_NO" id="CELL_NO" class="text_01" />
+			        	        	<th width="180" align="center" bgcolor="#f9ede6" scope="col">
+				        	        	<input type="button" id="select" value="조회" style="width: 50px;" />
+				        	        </th>	
+			        	        </th>
+			      	       </tr>
+		      	      </thead>
+	      	    </table>
+        	</div>
+        </div>	    
 	    <div class="grid_title" style="width:1200px;height:1px;">&nbsp;</div>
 	    <div class="grid">
 	        <table id="userGrid"></table>

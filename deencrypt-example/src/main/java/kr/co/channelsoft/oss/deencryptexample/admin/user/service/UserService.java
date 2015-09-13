@@ -17,15 +17,6 @@ public interface UserService {
     public Map<String, Object> getUserList(Map<String, String> dto) throws Exception;
     
     /**
-     * 사용자 정보 조회
-     * 
-     * @param dto
-     * @return
-     * @throws Exception
-     */
-    public Map<String, Object> getUser(Map<String, String> dto) throws Exception;
-    
-    /**
      * 사용자 정보 입력/수정
      * 
      * @param dto

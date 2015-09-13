@@ -2,145 +2,87 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.channelsoft.oss.deencryptexample.admin.user">
 
-<select id="list" resultType="hashmap">
-    SELECT
-        MAIL
-        ,PASS_WD
-        ,LAST_NM
-        ,FRST_NM
-        ,REGI_NO
-        ,CARD_NO
-        ,ACCT_NO
-        ,CELL_NO
-        ,TELE_NO
-        ,BRTH_DT
-        ,ADDR
-    FROM TUSER
-    WHERE 1=1
-</select>
+	<select id="list" resultType="hashmap">
+	    SELECT
+	        MAIL
+	        ,PASS_WD
+	        ,LAST_NM
+	        ,FRST_NM
+	        ,REGI_NO
+	        ,CARD_NO
+	        ,ACCT_NO
+	        ,CELL_NO
+	        ,TELE_NO
+	        ,BRTH_DT
+	        ,ADDR
+	    FROM TUSER
+	    WHERE 1=1
+	    <if test="CELL_NO != null and CELL_NO != ''">
+	    AND CELL_NO LIKE '%' || #{CELL_NO} || '%'
+	    </if>
+	</select>
+	
+	<select id="selectCnt">
+	    SELECT
+	        COUNT(*)
+	    FROM TUSER
+	    WHERE 1=1
+	</select>
+	
+	<update id="merge" parameterType="hashmap">
+		MERGE INTO TUSER T
+		USING (
+			SELECT 
+				#{MAIL} AS MAIL
+			FROM DUAL
+		) T2
+		ON (
+			T.MAIL = T2.MAIL
+		)
+		 WHEN MATCHED THEN
+		      UPDATE
+		         <set>
+		            <if test="PASS_WD != null">PASS_WD = #{PASS_WD},</if>
+		            <if test="LAST_NM != null">LAST_NM = #{LAST_NM},</if>
+		            <if test="FRST_NM != null">FRST_NM = #{FRST_NM},</if>
+		            <if test="REGI_NO != null">REGI_NO = #{REGI_NO},</if>
+		            <if test="CARD_NO != null">CARD_NO = #{CARD_NO},</if>
+		            <if test="ACCT_NO != null">ACCT_NO = #{ACCT_NO},</if>
+		            <if test="CELL_NO != null">CELL_NO = #{CELL_NO},</if>
+		            <if test="TELE_NO != null">TELE_NO = #{TELE_NO},</if>
+		            <if test="BRTH_DT != null">BRTH_DT = #{BRTH_DT},</if>
+		            <if test="ADDR != null">ADDR = #{ADDR},</if>
+		         </set>
+		 WHEN NOT MATCHED THEN
+		      INSERT (
+		             MAIL
+		            ,PASS_WD 
+		            <if test="LAST_NM != null">,LAST_NM</if>
+		            <if test="FRST_NM != null">,FRST_NM</if>
+		            <if test="REGI_NO != null">,REGI_NO</if>
+		            <if test="CARD_NO != null">,CARD_NO</if>
+		            <if test="ACCT_NO != null">,ACCT_NO</if>
+		            <if test="CELL_NO != null">,CELL_NO</if>
+		            <if test="TELE_NO != null">,TELE_NO</if>
+		            <if test="BRTH_DT != null">,BRTH_DT</if>
+		            <if test="ADDR != null">,ADDR</if>
+		      ) VALUES (
+		             #{MAIL}
+		            ,#{PASS_WD}
+		            <if test="LAST_NM != null">,#{LAST_NM}</if>
+		            <if test="FRST_NM != null">,#{FRST_NM}</if>
+		            <if test="REGI_NO != null">,#{REGI_NO}</if>
+		            <if test="CARD_NO != null">,#{CARD_NO}</if>
+		            <if test="ACCT_NO != null">,#{ACCT_NO}</if>
+		            <if test="CELL_NO != null">,#{CELL_NO}</if>
+		            <if test="TELE_NO != null">,#{TELE_NO}</if>
+		            <if test="BRTH_DT != null">,#{BRTH_DT}</if>
+		            <if test="ADDR != null">,#{ADDR}</if>
+		      )
+	</update>
 
-<select id="select" parameterType="hashmap" resultType="hashmap">
-    SELECT
-        MAIL
-        ,PASS_WD
-        ,LAST_NM
-        ,FRST_NM
-        ,REGI_NO
-        ,CARD_NO
-        ,ACCT_NO
-        ,CELL_NO
-        ,TELE_NO
-        ,BRTH_DT
-        ,ADDR
-    FROM TUSER
-    WHERE 1=1
-    AND MAIL = #{MAIL}
-</select>
-
-<select id="selectCnt">
-    SELECT
-        COUNT(*)
-    FROM TUSER
-    WHERE 1=1
-</select>
-
-<update id="merge" parameterType="hashmap">
-	MERGE INTO TUSER T
-	USING (
-		SELECT 
-			#{MAIL} AS MAIL
-		FROM DUAL
-	) T2
-	ON (
-		T.MAIL = T2.MAIL
-	)
-	 WHEN MATCHED THEN
-	      UPDATE
-	         <set>
-	            <if test="PASS_WD != null">PASS_WD = #{PASS_WD},</if>
-	            <if test="LAST_NM != null">LAST_NM = #{LAST_NM},</if>
-	            <if test="FRST_NM != null">FRST_NM = #{FRST_NM},</if>
-	            <if test="REGI_NO != null">REGI_NO = #{REGI_NO},</if>
-	            <if test="CARD_NO != null">CARD_NO = #{CARD_NO},</if>
-	            <if test="ACCT_NO != null">ACCT_NO = #{ACCT_NO},</if>
-	            <if test="CELL_NO != null">CELL_NO = #{CELL_NO},</if>
-	            <if test="TELE_NO != null">TELE_NO = #{TELE_NO},</if>
-	            <if test="BRTH_DT != null">BRTH_DT = #{BRTH_DT},</if>
-	            <if test="ADDR != null">ADDR = #{ADDR},</if>
-	         </set>
-	 WHEN NOT MATCHED THEN
-	      INSERT (
-	             MAIL
-	            ,PASS_WD 
-	            <if test="LAST_NM != null">,LAST_NM</if>
-	            <if test="FRST_NM != null">,FRST_NM</if>
-	            <if test="REGI_NO != null">,REGI_NO</if>
-	            <if test="CARD_NO != null">,CARD_NO</if>
-	            <if test="ACCT_NO != null">,ACCT_NO</if>
-	            <if test="CELL_NO != null">,CELL_NO</if>
-	            <if test="TELE_NO != null">,TELE_NO</if>
-	            <if test="BRTH_DT != null">,BRTH_DT</if>
-	            <if test="ADDR != null">,ADDR</if>
-	      ) VALUES (
-	             #{MAIL}
-	            ,#{PASS_WD}
-	            <if test="LAST_NM != null">,#{LAST_NM}</if>
-	            <if test="FRST_NM != null">,#{FRST_NM}</if>
-	            <if test="REGI_NO != null">,#{REGI_NO}</if>
-	            <if test="CARD_NO != null">,#{CARD_NO}</if>
-	            <if test="ACCT_NO != null">,#{ACCT_NO}</if>
-	            <if test="CELL_NO != null">,#{CELL_NO}</if>
-	            <if test="TELE_NO != null">,#{TELE_NO}</if>
-	            <if test="BRTH_DT != null">,#{BRTH_DT}</if>
-	            <if test="ADDR != null">,#{ADDR}</if>
-	      )
-</update>
-
-<insert id="insert" parameterType="hashmap">
-    INSERT INTO TUSER (
-          MAIL
-          , PASS_WD
-          , LAST_NM
-          , FRST_NM
-          , REGI_NO
-          , CARD_NO
-          , ACCT_NO
-          , CELL_NO
-          , TELE_NO
-          , BRTH_DT
-          , ADDR
-    ) VALUES (
-          #{MAIL}
-          , #{PASS_WD}
-          , #{LAST_NM}
-          , #{FRST_NM}
-          , #{REGI_NO}
-          , #{CARD_NO}
-          , #{ACCT_NO}
-          , #{CELL_NO}
-          , #{TELE_NO}
-          , #{BRTH_DT}
-          , #{ADDR}
-    )
-</insert>
-
-<update id="update" parameterType="hashmap">
-    UPDATE TUSER
-      SET PASS_WD = #{PASS_WD}
-           , LAST_NM = #{LAST_NM}
-           , FRST_NM = #{FRST_NM}
-           , REGI_NO = #{REGI_NO}
-             , CARD_NO = #{CARD_NO}
-           , ACCT_NO = #{ACCT_NO}
-           , CELL_NO = #{CELL_NO}
-           , TELE_NO = #{TELE_NO}
-           , BRTH_DT = #{BRTH_DT}
-           , ADDR = #{ADDR}
-    WHERE MAIL = #{MAIL}
-</update>
-
-<delete id="delete" parameterType="hashmap">
-    DELETE FROM TUSER WHERE MAIL = #{MAIL}
-</delete>
+	<delete id="delete" parameterType="hashmap">
+	    DELETE FROM TUSER WHERE MAIL = #{MAIL}
+	</delete>
 
 </mapper>

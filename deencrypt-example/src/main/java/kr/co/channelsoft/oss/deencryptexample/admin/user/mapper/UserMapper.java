@@ -21,14 +21,6 @@ public interface UserMapper {
     public int count(Map<String, String> dto);
     
     /**
-     * 사용자 정보 조회
-     * 
-     * @param dto
-     * @return
-     */
-    public Map<String, Object> select(Map<String, String> dto);
-    
-    /**
      * 사용자 정보 저장/수정
      * 
      * @param dto

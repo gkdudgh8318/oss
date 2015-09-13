@@ -219,9 +219,30 @@ public class DeencryptionAdvice {
     
     // 복호화
     public void decrypt(String businessName, Map<String, Object> data) throws Exception {
+    	
+        if (data == null) {
+            if (logger.isDebugEnabled()) logger.debug("Decrypt target data map is null.");
+            return;
+        }
+        if (!decryptionTargetHolder.containsKey(businessName)) {
+            if (logger.isDebugEnabled()) logger.debug("Decrypt target holder doesn't contain the key : {}", businessName);
+            return;
+        }
         
-        for (String decodingTarget : decryptionTargetHolder.getTargetList(businessName)) {
-            data.put(decodingTarget, cryptor.decrypt((String) data.get(decodingTarget)));
+        for (String decryptTarget : decryptionTargetHolder.getTargetList(businessName)) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Decrypt target name : {}", decryptTarget);
+                logger.debug("Decrypt target exists : {}", data.containsKey(decryptTarget));
+            }
+            
+            if (data.containsKey(decryptTarget)) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Decrypt target value : {}", data.get(decryptTarget));
+                    logger.debug("Decrypted value : {}", cryptor.decrypt((String) data.get(decryptTarget)));
+                }
+                
+                data.put(decryptTarget, cryptor.decrypt((String) data.get(decryptTarget)));
+            }
         }
     }
     

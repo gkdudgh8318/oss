@@ -31,15 +31,6 @@ public class UserMapperImpl extends EgovAbstractMapper implements UserMapper {
     
     /*
      * (non-Javadoc)
-     * @see kr.co.channelsoft.oss.deencryptexample.admin.user.mapper.UserMapper#select(java.util.Map)
-     */
-    public Map<String, Object> select(Map<String, String> dto) {
-    
-        return (Map<String, Object>) selectOne("kr.co.channelsoft.oss.deencryptexample.admin.user.select", dto);
-    }
-    
-    /*
-     * (non-Javadoc)
      * @see kr.co.channelsoft.oss.deencryptexample.admin.user.mapper.UserMapper#merge(java.util.Map)
      */
     public int merge(Map<String, String> dto) {
